@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RunForce - Running Motivation Music</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.72),
+                    rgba(0,0,0,0.90)
+                ),
+                url("https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 94, 0, 0.16);
+            filter: blur(100px);
+            top: 20%;
+            left: -200px;
+            z-index: -4;
+            pointer-events: none;
+        }
+
+        .glow2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 180, 0, 0.10);
+            filter: blur(110px);
+            right: -200px;
+            bottom: 0;
+            z-index: -4;
+            pointer-events: none;
+        }
+
+        /* NAVBAR */
+
+        header {
+            width: 100%;
+            padding: 22px 5%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            z-index: 100;
+
+            background: rgba(0,0,0,0.30);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ff7a00;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.07);
+            color: white;
+
+            padding: 10px 17px;
+            border-radius: 30px;
+
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-btn:hover {
+            background: #ff7300;
+            border-color: #ff7300;
+            transform: translateY(-2px);
+        }
+
+        .online {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 15px;
+            border-radius: 30px;
+
+            background: rgba(0,255,120,0.08);
+            border: 1px solid rgba(0,255,120,0.20);
+
+            font-size: 13px;
+        }
+
+        .online-dot {
+            width: 9px;
+            height: 9px;
+            background: #00ff72;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #00ff72;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 120px 20px 260px;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .small-label {
+            display: inline-block;
+
+            padding: 9px 18px;
+
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.07);
+
+            border-radius: 30px;
+
+            font-size: 13px;
+            color: #ddd;
+
+            margin-bottom: 25px;
+        }
+
+        .small-label span {
+            color: #ff7a00;
+        }
+
+        h1 {
+            font-size: clamp(55px, 10vw, 145px);
+            line-height: 0.88;
+
+            font-weight: 1000;
+            letter-spacing: -5px;
+
+            text-transform: uppercase;
+        }
+
+        h1 span {
+            color: #ff7300;
+            text-shadow: 0 0 35px rgba(255,115,0,0.25);
+        }
+
+        .hero p {
+            margin: 30px auto;
+            max-width: 650px;
+
+            color: #bdbdbd;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category {
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+
+            color: #ddd;
+            font-size: 13px;
+        }
+
+        /* PLAYER */
+
+        .player {
+            position: fixed;
+
+            left: 50%;
+            bottom: 25px;
+
+            transform: translateX(-50%);
+
+            width: min(900px, 92%);
+
+            padding: 18px 22px;
+
+            background: rgba(18,18,18,0.88);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.65),
+                0 0 30px rgba(255,100,0,0.08);
+
+            z-index: 200;
+        }
+
+        .player-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .album {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            background:
+                linear-gradient(135deg, #ff7a00, #ff2d00);
+
+            font-size: 25px;
+
+            box-shadow:
+                0 8px 25px rgba(255,90,0,0.25);
+        }
+
+        .song-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .song-title {
+            font-weight: bold;
+            font-size: 17px;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .song-subtitle {
+            color: #999;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .player-status {
+            color: #ff7a00;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .progress-area {
+            margin-top: 15px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 5px;
+
+            background: #333;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #ff4500,
+                #ff9d00
+            );
+
+            border-radius: 10px;
+        }
+
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+
+            color: #777;
+            font-size: 11px;
+
+            margin-top: 6px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 12px;
+        }
+
+        .control {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: rgba(255,255,255,0.08);
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition: 0.25s;
+        }
+
+        .control:hover {
+            background: rgba(255,115,0,0.25);
+            transform: scale(1.08);
+        }
+
+        .play {
+            width: 52px;
+            height: 52px;
+
+            background: #ff6a00;
+
+            font-size: 20px;
+
+            box-shadow:
+                0 0 25px rgba(255,100,0,0.25);
+        }
+
+        .play:hover {
+            background: #ff7d22;
+        }
+
+        .volume-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .volume {
+            width: 80px;
+            accent-color: #ff7300;
+        }
+
+        /* YOUTUBE */
+
+        #youtube-player {
+            position: absolute;
+
+            width: 1px;
+            height: 1px;
+
+            left: -9999px;
+            top: -9999px;
+
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* CONTENT */
+
+        .section {
+            padding: 100px 7% 170px;
+            background: rgba(0,0,0,0.55);
+        }
+
+        .section-title {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: #ff7300;
+        }
+
+        .section-text {
+            color: #aaa;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+
+            margin-top: 40px;
+        }
+
+        .card {
+            padding: 28px;
+
+            background: rgba(255,255,255,0.05);
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(255,115,0,0.5);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.35);
+        }
+
+        .card-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            color: #777;
+
+            background: #050505;
+
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #ff7300;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 15px 18px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            .nav-btn {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+            .online {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .player {
+                bottom: 10px;
+                padding: 14px;
+                border-radius: 20px;
+            }
+
+            .album {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .song-title {
+                font-size: 14px;
+            }
+
+            .song-subtitle {
+                font-size: 11px;
+            }
+
+            .volume-area {
+                display: none;
+            }
+
+            .control {
+                width: 38px;
+                height: 38px;
+            }
+
+            .play {
+                width: 48px;
+                height: 48px;
+            }
+
+            .section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .section-title {
+                font-size: 35px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background"></div>
+
+    <div class="glow"></div>
+    <div class="glow2"></div>
+
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <div class="logo">
+            RUN<span>FORCE</span>
+        </div>
+
+        <nav>
+
+            <div class="online">
+                <div class="online-dot"></div>
+                ONLINE
+            </div>
+
+            <button class="nav-btn" onclick="toggleTheme()">
+                🌙 Theme
+            </button>
+
+            <button class="nav-btn" onclick="scrollToSection('about')">
+                About
+            </button>
+
+            <button class="nav-btn" onclick="scrollToSection('faq')">
+                FAQ
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-label">
+                🔥 <span>RUNNING MOTIVATION</span> • MUSIC FOR YOUR JOURNEY
+            </div>
+
+            <h1>
+                RUN WITH<br>
+                <span>NO LIMITS</span>
+            </h1>
+
+            <p>
+                अपनी running को एक नई energy दो।
+                अपने headphones लगाओ, music शुरू करो
+                और अपनी limits को पीछे छोड़ दो।
+            </p>
+
+            <div class="category-buttons">
+
+                <div class="category">🏃 Running</div>
+
+                <div class="category">🔥 Motivation</div>
+
+                <div class="category">⚡ Energy</div>
+
+                <div class="category">🎧 Workout</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="section" id="about">
+
+        <h2 class="section-title">
+            RUN <span>STRONGER</span>
+        </h2>
+
+        <p class="section-text">
+            RunForce एक running motivation music experience है।
+            अपनी playlist चलाओ और अपनी workout या running के
+            दौरान लगातार energy बनाए रखो।
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">🔥</div>
+
+                <h3>High Energy</h3>
+
+                <p>
+                    Running और workout के लिए energetic music।
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🏃</div>
+
+                <h3>Keep Running</h3>
+
+                <p>
+                    जब मन करे रुकने का, तब music तुम्हें आगे बढ़ने
+                    की motivation देगा।
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🎧</div>
+
+                <h3>One Playlist</h3>
+
+                <p>
+                    एक YouTube playlist से multiple songs
+                    automatically चल सकते हैं।
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+
+    <section class="section" id="faq">
+
+        <h2 class="section-title">
+            <span>FAQ</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>🎵 Songs कहाँ से आएंगे?</h3>
+
+                <p>
+                    RunForce तुम्हारी YouTube playlist का इस्तेमाल
+                    करेगा। Playlist में जितने songs होंगे,
+                    player उन्हें चला सकता है।
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>⏭️ Next Song कैसे चलेगा?</h3>
+
+                <p>
+                    Player में Next button दबाओ।
+                    Playlist का अगला song चलेगा।
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>➕ नए Songs कैसे जोड़ें?</h3>
+
+                <p>
+                    अपनी YouTube playlist में नया song जोड़ो।
+                    Website का code हर song के लिए बदलने की
+                    जरूरत नहीं है।
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- YOUTUBE PLAYER -->
+
+    <div id="youtube-player"></div>
+
+
+    <!-- MUSIC PLAYER -->
+
+    <div class="player">
+
+        <div class="player-top">
+
+            <div class="album">
+                🏃
+            </div>
+
+            <div class="song-info">
+
+                <div class="song-title" id="songTitle">
+                    RunForce Motivation
+                </div>
+
+                <div class="song-subtitle" id="songSubtitle">
+                    Loading playlist...
+                </div>
+
+                <div class="player-status" id="playerStatus">
+                    ● Ready
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-area">
+
+            <div class="progress" id="progressBar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill">
+                </div>
+
+            </div>
+
+            <div class="time-row">
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+                <span id="duration">
+                    0:00
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="controls">
+
+            <button
+                class="control"
+                onclick="previousSong()"
+                title="Previous">
+                ⏮
+            </button>
+
+            <button
+                class="control"
+                onclick="restartSong()"
+                title="Restart">
+                ↺
+            </button>
+
+            <button
+                class="control play"
+                id="playButton"
+                onclick="togglePlay()"
+                title="Play / Pause">
+                ▶
+            </button>
+
+            <button
+                class="control"
+                onclick="nextSong()"
+                title="Next">
+                ⏭
+            </button>
+
+            <div class="volume-area">
+
+                🔊
+
+                <input
+                    class="volume"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="80"
+                    oninput="changeVolume(this.value)">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 <span>RunForce</span> |
+        Running Motivation Music
+
+    </footer>
+
+
+    <!-- YOUTUBE API -->
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+
+    <script>
+
+        /*
+        =====================================================
+        RUNFORCE PLAYLIST
+        =====================================================
+
+        यहाँ सिर्फ PLAYLIST ID है।
+
+        हर song का अलग link डालने की जरूरत नहीं।
+
+        =====================================================
+        */
+
+        const PLAYLIST_ID =
+            "PLWd4gmX2j6dOUpWveHdipQ-vqlPX1A0f1";
+
+
+        let player = null;
+
+        let progressTimer = null;
+
+
+        /*
+        =====================================================
+        YOUTUBE PLAYER
+        =====================================================
+        */
+
+        function onYouTubeIframeAPIReady() {
+
+            player = new YT.Player(
+                "youtube-player",
+                {
+
+                    width: "1",
+                    height: "1",
+
+                    playerVars: {
+
+                        autoplay: 0,
+
+                        controls: 0,
+
+                        rel: 0,
+
+                        playsinline: 1,
+
+                        listType: "playlist",
+
+                        list: PLAYLIST_ID,
+
+                        origin: window.location.origin
+
+                    },
+
+                    events: {
+
+                        onReady: onPlayerReady,
+
+                        onStateChange:
+                            onPlayerStateChange,
+
+                        onError:
+                            onPlayerError
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /*
+        =====================================================
+        PLAYER READY
+        =====================================================
+        */
+
+        function onPlayerReady() {
+
+            player.setVolume(80);
+
+            updateSongInfo();
+
+            document.getElementById(
+                "playerStatus"
+            ).textContent = "● Ready";
+
+            startProgress();
+
+        }
+
+
+        /*
+        =====================================================
+        PLAY / PAUSE
+        =====================================================
+        */
+
+        function togglePlay() {
+
+            if (!player) return;
+
+            const state =
+                player.getPlayerState();
+
+            if (
+                state === YT.PlayerState.PLAYING
+            ) {
+
+                player.pauseVideo();
+
+            } else {
+
+                player.playVideo();
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        PLAYER STATE
+        =====================================================
+        */
+
+        function onPlayerStateChange(event) {
+
+            const playButton =
+                document.getElementById(
+                    "playButton"
+                );
+
+            const status =
+                document.getElementById(
+                    "playerStatus"
+                );
+
+
+            if (
+                event.data ===
+                YT.PlayerState.PLAYING
+            ) {
+
+                playButton.textContent = "❚❚";
+
+                status.textContent =
+                    "● Playing";
+
+                updateSongInfo();
+
+            }
+
+
+            else if (
+                event.data ===
+                YT.PlayerState.PAUSED
+            ) {
+
+                playButton.textContent = "▶";
+
+                status.textContent =
+                    "● Paused";
+
+            }
+
+
+            else if (
+                event.data ===
+                YT.PlayerState.ENDED
+            ) {
+
+                playButton.textContent = "▶";
+
+                status.textContent =
+                    "● Song finished";
+
+                updateSongInfo();
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        NEXT SONG
+        =====================================================
+        */
+
+        function nextSong() {
+
+            if (!player) return;
+
+            player.nextVideo();
+
+            setTimeout(
+                updateSongInfo,
+                700
+            );
+
+        }
+
+
+        /*
+        =====================================================
+        PREVIOUS SONG
+        =====================================================
+        */
+
+        function previousSong() {
+
+            if (!player) return;
+
+            player.previousVideo();
+
+            setTimeout(
+                updateSongInfo,
+                700
+            );
+
+        }
+
+
+        /*
+        =====================================================
+        RESTART
+        =====================================================
+        */
+
+        function restartSong() {
+
+            if (!player) return;
+
+            player.seekTo(
+                0,
+                true
+            );
+
+            player.playVideo();
+
+        }
+
+
+        /*
+        =====================================================
+        VOLUME
+        =====================================================
+        */
+
+        function changeVolume(value) {
+
+            if (!player) return;
+
+            player.setVolume(
+                Number(value)
+            );
+
+        }
+
+
+        /*
+        =====================================================
+        SONG INFORMATION
+        =====================================================
+        */
+
+        function updateSongInfo() {
+
+            if (!player) return;
+
+            try {
+
+                const data =
+                    player.getVideoData();
+
+                if (
+                    data &&
+                    data.title
+                ) {
+
+                    document.getElementById(
+                        "songTitle"
+                    ).textContent =
+                        data.title;
+
+                    document.getElementById(
+                        "songSubtitle"
+                    ).textContent =
+                        "RunForce • YouTube Playlist";
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Song information loading..."
+                );
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        PROGRESS BAR
+        =====================================================
+        */
+
+        function startProgress() {
+
+            if (progressTimer) {
+
+                clearInterval(
+                    progressTimer
+                );
+
+            }
+
+            progressTimer =
+                setInterval(
+                    updateProgress,
+                    500
+                );
+
+        }
+
+
+        function updateProgress() {
+
+            if (!player) return;
+
+            try {
+
+                const current =
+                    player.getCurrentTime();
+
+                const duration =
+                    player.getDuration();
+
+
+                if (
+                    !duration ||
+                    duration <= 0
+                ) {
+
+                    return;
+
+                }
+
+
+                const percentage =
+                    (current / duration) *
+                    100;
+
+
+                document.getElementById(
+                    "progressFill"
+                ).style.width =
+                    percentage + "%";
+
+
+                document.getElementById(
+                    "currentTime"
+                ).textContent =
+                    formatTime(current);
+
+
+                document.getElementById(
+                    "duration"
+                ).textContent =
+                    formatTime(duration);
+
+            } catch (error) {
+
+                // Player अभी ready नहीं है
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        CLICK PROGRESS BAR
+        =====================================================
+        */
+
+        document
+            .getElementById("progressBar")
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (!player) return;
+
+                    const rect =
+                        this.getBoundingClientRect();
+
+                    const clickPosition =
+                        event.clientX -
+                        rect.left;
+
+                    const percentage =
+                        clickPosition /
+                        rect.width;
+
+                    const duration =
+                        player.getDuration();
+
+                    player.seekTo(
+                        duration *
+                        percentage,
+                        true
+                    );
+
+                }
+            );
+
+
+        /*
+        =====================================================
+        TIME FORMAT
+        =====================================================
+        */
+
+        function formatTime(seconds) {
+
+            if (
+                !seconds ||
+                isNaN(seconds)
+            ) {
+
+                return "0:00";
+
+            }
+
+            seconds =
+                Math.floor(seconds);
+
+            const minutes =
+                Math.floor(
+                    seconds / 60
+                );
+
+            const remaining =
+                seconds % 60;
+
+            return (
+                minutes +
+                ":" +
+                String(
+                    remaining
+                ).padStart(2, "0")
+            );
+
+        }
+
+
+        /*
+        =====================================================
+        YOUTUBE ERROR
+        =====================================================
+        */
+
+        function onPlayerError(event) {
+
+            const status =
+                document.getElementById(
+                    "playerStatus"
+                );
+
+
+            if (
+                event.data === 101 ||
+                event.data === 150
+            ) {
+
+                status.textContent =
+                    "● यह video embedding allow नहीं करता";
+
+            }
+
+            else if (
+                event.data === 100
+            ) {
+
+                status.textContent =
+                    "● यह video उपलब्ध नहीं है";
+
+            }
+
+            else if (
+                event.data === 153
+            ) {
+
+                status.textContent =
+                    "● Website को localhost से खोलें";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "● YouTube video error";
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        NAVIGATION
+        =====================================================
+        */
+
+        function scrollToSection(id) {
+
+            const section =
+                document.getElementById(id);
+
+            if (section) {
+
+                section.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        THEME
+        =====================================================
+        */
+
+        let lightMode = false;
+
+
+        function toggleTheme() {
+
+            lightMode =
+                !lightMode;
+
+
+            if (lightMode) {
+
+                document.body.style.background =
+                    "#eeeeee";
+
+                document.body.style.color =
+                    "#111";
+
+                document.querySelector(
+                    ".background"
+                ).style.filter =
+                    "brightness(1.35)";
+
+            }
+
+            else {
+
+                document.body.style.background =
+                    "#080808";
+
+                document.body.style.color =
+                    "white";
+
+                document.querySelector(
+                    ".background"
+                ).style.filter =
+                    "brightness(1)";
+
+            }
+
+        }
+
+
+        /*
+        =====================================================
+        FILE:// WARNING
+        =====================================================
+        */
+
+        if (
+            window.location.protocol ===
+            "file:"
+        ) {
+
+            setTimeout(
+                function() {
+
+                    document.getElementById(
+                        "playerStatus"
+                    ).textContent =
+                        "● localhost से website खोलें";
+
+                },
+                1000
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
