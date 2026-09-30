@@ -103,6 +103,25 @@
             color: #ff7a00;
         }
 
+        .logo small {
+            display: inline-block;
+            margin-left: 12px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            vertical-align: middle;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 750px) {
+            .logo small {
+                margin-left: 7px;
+                font-size: 8px;
+                letter-spacing: 0.8px;
+            }
+        }
+
         nav {
             display: flex;
             gap: 10px;
@@ -516,6 +535,11 @@
             color: #ff7300;
         }
 
+        footer strong {
+            color: #ff7300;
+            font-weight: 700;
+        }
+
         /* MOBILE */
 
         @media (max-width: 750px) {
@@ -611,7 +635,7 @@
     <header>
 
         <div class="logo">
-            RUN<span>FORCE</span>
+            RUN<span>FORCE</span><small>BY HITESH KUMAR</small>
         </div>
 
         <nav>
@@ -905,6 +929,8 @@
 
         © 2026 <span>RunForce</span> |
         Running Motivation Music
+        <br>
+        Created by <strong>Hitesh Kumar</strong> ❤️
 
     </footer>
 
