@@ -6,7 +6,17 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>RunForce - Running Motivation Music</title>
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification"
+        content="2nIWx58K-qbcGUPFq1gOmCR15bF6ARD2MTQreoRQQ-s">
+
+    <title>RUNFORCE - Running Motivation Music</title>
+
+    <meta name="description"
+        content="RUNFORCE - Running motivation music, workout songs and powerful running motivation.">
+
+    <meta name="keywords"
+        content="RUNFORCE, running motivation, running music, workout music, motivation songs">
 
     <style>
 
@@ -106,20 +116,12 @@
         .logo small {
             display: inline-block;
             margin-left: 12px;
-            color: #ffffff;
+            color: white;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1.5px;
             vertical-align: middle;
             opacity: 0.85;
-        }
-
-        @media (max-width: 750px) {
-            .logo small {
-                margin-left: 7px;
-                font-size: 8px;
-                letter-spacing: 0.8px;
-            }
         }
 
         nav {
@@ -482,24 +484,46 @@
         }
 
         .card {
-            padding: 28px;
+            padding: 30px;
 
             background: rgba(255,255,255,0.05);
 
             border: 1px solid rgba(255,255,255,0.10);
 
-            border-radius: 20px;
+            border-radius: 25px;
 
             transition: 0.3s;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            background: rgba(255,115,0,0.15);
+
+            border-radius: 50%;
+
+            filter: blur(60px);
+
+            top: -70px;
+            right: -70px;
         }
 
         .card:hover {
             transform: translateY(-8px);
 
-            border-color: rgba(255,115,0,0.5);
+            border-color:
+                rgba(255,115,0,0.35);
 
             box-shadow:
-                0 15px 40px rgba(0,0,0,0.35);
+                0 20px 50px rgba(0,0,0,0.3);
         }
 
         .card-icon {
@@ -517,27 +541,52 @@
             font-size: 14px;
         }
 
+        /* FAQ */
+
+        .faq {
+            max-width: 850px;
+            margin-top: 40px;
+        }
+
+        details {
+            margin-bottom: 15px;
+
+            background: rgba(255,255,255,0.05);
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            cursor: pointer;
+        }
+
+        summary {
+            font-weight: bold;
+            color: white;
+        }
+
+        details p {
+            margin-top: 15px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
         /* FOOTER */
 
         footer {
             text-align: center;
 
-            padding: 35px 20px;
+            padding: 40px 20px 190px;
 
             color: #777;
 
             background: #050505;
-
-            font-size: 13px;
-        }
-
-        footer span {
-            color: #ff7300;
         }
 
         footer strong {
             color: #ff7300;
-            font-weight: 700;
         }
 
         /* MOBILE */
@@ -545,11 +594,17 @@
         @media (max-width: 750px) {
 
             header {
-                padding: 15px 18px;
+                padding: 15px 4%;
             }
 
             .logo {
                 font-size: 19px;
+            }
+
+            .logo small {
+                margin-left: 5px;
+                font-size: 7px;
+                letter-spacing: 0.6px;
             }
 
             nav {
@@ -562,10 +617,22 @@
             }
 
             .online {
-                display: none;
+                padding: 7px 9px;
+                font-size: 10px;
+            }
+
+            .online-dot {
+                width: 7px;
+                height: 7px;
+            }
+
+            .hero {
+                padding-top: 110px;
+                padding-bottom: 300px;
             }
 
             h1 {
+                font-size: clamp(50px, 18vw, 90px);
                 letter-spacing: -3px;
             }
 
@@ -573,9 +640,18 @@
                 font-size: 15px;
             }
 
+            .section {
+                padding: 70px 5% 180px;
+            }
+
+            .section-title {
+                font-size: 34px;
+            }
+
             .player {
                 bottom: 10px;
-                padding: 14px;
+                width: 94%;
+                padding: 13px;
                 border-radius: 20px;
             }
 
@@ -593,28 +669,24 @@
                 font-size: 11px;
             }
 
+            .control {
+                width: 36px;
+                height: 36px;
+            }
+
+            .play {
+                width: 46px;
+                height: 46px;
+            }
+
             .volume-area {
                 display: none;
             }
 
-            .control {
-                width: 38px;
-                height: 38px;
+            .controls {
+                gap: 7px;
             }
 
-            .play {
-                width: 48px;
-                height: 48px;
-            }
-
-            .section {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .section-title {
-                font-size: 35px;
-            }
         }
 
     </style>
@@ -622,40 +694,50 @@
 
 <body>
 
-    <!-- BACKGROUND -->
-
     <div class="background"></div>
 
     <div class="glow"></div>
     <div class="glow2"></div>
-
 
     <!-- NAVBAR -->
 
     <header>
 
         <div class="logo">
-            RUN<span>FORCE</span><small>BY HITESH KUMAR</small>
+            RUN<span>FORCE</span>
+            <small>RUN • MUSIC • MOTIVATION</small>
         </div>
 
         <nav>
 
-            <div class="online">
-                <div class="online-dot"></div>
-                ONLINE
-            </div>
-
-            <button class="nav-btn" onclick="toggleTheme()">
-                🌙 Theme
+            <button
+                class="nav-btn"
+                onclick="scrollToSection('home')">
+                Home
             </button>
 
-            <button class="nav-btn" onclick="scrollToSection('about')">
+            <button
+                class="nav-btn"
+                onclick="scrollToSection('about')">
                 About
             </button>
 
-            <button class="nav-btn" onclick="scrollToSection('faq')">
+            <button
+                class="nav-btn"
+                onclick="scrollToSection('music')">
+                Music
+            </button>
+
+            <button
+                class="nav-btn"
+                onclick="scrollToSection('faq')">
                 FAQ
             </button>
+
+            <div class="online">
+                <span class="online-dot"></span>
+                Online
+            </div>
 
         </nav>
 
@@ -664,34 +746,49 @@
 
     <!-- HERO -->
 
-    <section class="hero">
+    <section
+        class="hero"
+        id="home">
 
         <div class="hero-content">
 
             <div class="small-label">
-                🔥 <span>RUNNING MOTIVATION</span> • MUSIC FOR YOUR JOURNEY
+                <span>●</span>
+                RUNFORCE IS ONLINE
             </div>
 
             <h1>
-                RUN WITH<br>
-                <span>NO LIMITS</span>
+                RUN
+                <span>FORCE</span>
             </h1>
 
             <p>
-                अपनी running को एक नई energy दो।
-                अपने headphones लगाओ, music शुरू करो
-                और अपनी limits को पीछे छोड़ दो।
+                Your running motivation starts here.
+                Powerful music, strong mindset and
+                unlimited energy for every run.
             </p>
 
             <div class="category-buttons">
 
-                <div class="category">🏃 Running</div>
+                <div class="category">
+                    🏃 Running
+                </div>
 
-                <div class="category">🔥 Motivation</div>
+                <div class="category">
+                    🔥 Motivation
+                </div>
 
-                <div class="category">⚡ Energy</div>
+                <div class="category">
+                    🎧 Music
+                </div>
 
-                <div class="category">🎧 Workout</div>
+                <div class="category">
+                    💪 Workout
+                </div>
+
+                <div class="category">
+                    ⚡ Energy
+                </div>
 
             </div>
 
@@ -702,28 +799,43 @@
 
     <!-- ABOUT -->
 
-    <section class="section" id="about">
+    <section
+        class="section"
+        id="about">
 
         <h2 class="section-title">
-            RUN <span>STRONGER</span>
+            About
+            <span>RUNFORCE</span>
         </h2>
 
         <p class="section-text">
-            RunForce एक running motivation music experience है।
-            अपनी playlist चलाओ और अपनी workout या running के
-            दौरान लगातार energy बनाए रखो।
+
+            RUNFORCE is a running and motivation
+            music website created for people who
+            want to push their limits.
+
+            Whether you are running, working out
+            or simply need motivation,
+            RUNFORCE keeps your energy moving.
+
         </p>
+
 
         <div class="cards">
 
             <div class="card">
 
-                <div class="card-icon">🔥</div>
+                <div class="card-icon">
+                    🏃
+                </div>
 
-                <h3>High Energy</h3>
+                <h3>
+                    Keep Running
+                </h3>
 
                 <p>
-                    Running और workout के लिए energetic music।
+                    Keep moving forward and
+                    never stop chasing your goals.
                 </p>
 
             </div>
@@ -731,13 +843,17 @@
 
             <div class="card">
 
-                <div class="card-icon">🏃</div>
+                <div class="card-icon">
+                    🔥
+                </div>
 
-                <h3>Keep Running</h3>
+                <h3>
+                    Stay Motivated
+                </h3>
 
                 <p>
-                    जब मन करे रुकने का, तब music तुम्हें आगे बढ़ने
-                    की motivation देगा।
+                    Powerful music can help create
+                    a stronger workout mindset.
                 </p>
 
             </div>
@@ -745,72 +861,151 @@
 
             <div class="card">
 
-                <div class="card-icon">🎧</div>
+                <div class="card-icon">
+                    💪
+                </div>
 
-                <h3>One Playlist</h3>
+                <h3>
+                    Build Strength
+                </h3>
 
                 <p>
-                    एक YouTube playlist से multiple songs
-                    automatically चल सकते हैं।
+                    Train your body and your mind
+                    one step at a time.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    More Energy
+                </h3>
+
+                <p>
+                    Turn up the energy and
+                    enjoy your running session.
                 </p>
 
             </div>
 
         </div>
+
+    </section>
+
+
+    <!-- MUSIC -->
+
+    <section
+        class="section"
+        id="music">
+
+        <h2 class="section-title">
+            Running
+            <span>Music</span>
+        </h2>
+
+        <p class="section-text">
+
+            Your RUNFORCE playlist is ready.
+            Every time you open the website,
+            a different song is selected randomly.
+
+        </p>
 
     </section>
 
 
     <!-- FAQ -->
 
-    <section class="section" id="faq">
+    <section
+        class="section"
+        id="faq">
 
         <h2 class="section-title">
-            <span>FAQ</span>
+            Frequently Asked
+            <span>Questions</span>
         </h2>
 
-        <div class="cards">
+        <div class="faq">
 
-            <div class="card">
+            <details>
 
-                <h3>🎵 Songs कहाँ से आएंगे?</h3>
-
-                <p>
-                    RunForce तुम्हारी YouTube playlist का इस्तेमाल
-                    करेगा। Playlist में जितने songs होंगे,
-                    player उन्हें चला सकता है।
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>⏭️ Next Song कैसे चलेगा?</h3>
+                <summary>
+                    What is RUNFORCE?
+                </summary>
 
                 <p>
-                    Player में Next button दबाओ।
-                    Playlist का अगला song चलेगा।
+                    RUNFORCE is a running motivation
+                    music website designed for runners,
+                    workouts and fitness motivation.
                 </p>
 
-            </div>
+            </details>
 
 
-            <div class="card">
+            <details>
 
-                <h3>➕ नए Songs कैसे जोड़ें?</h3>
+                <summary>
+                    Will the song change when I refresh?
+                </summary>
 
                 <p>
-                    अपनी YouTube playlist में नया song जोड़ो।
-                    Website का code हर song के लिए बदलने की
-                    जरूरत नहीं है।
+                    Yes. RUNFORCE selects a random
+                    song from the playlist when the
+                    website loads.
                 </p>
 
-            </div>
+            </details>
+
+
+            <details>
+
+                <summary>
+                    Can I change the song?
+                </summary>
+
+                <p>
+                    Yes. Use the Previous and Next
+                    buttons in the music player.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>
+                    Can I use RUNFORCE on mobile?
+                </summary>
+
+                <p>
+                    Yes. The website is responsive
+                    and works on phones, tablets
+                    and computers.
+                </p>
+
+            </details>
 
         </div>
 
     </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026
+        <strong>RUNFORCE</strong>
+        • Running • Music • Motivation
+
+    </footer>
 
 
     <!-- YOUTUBE PLAYER -->
@@ -825,20 +1020,26 @@
         <div class="player-top">
 
             <div class="album">
-                🏃
+                🎧
             </div>
 
             <div class="song-info">
 
-                <div class="song-title" id="songTitle">
-                    RunForce Motivation
+                <div
+                    class="song-title"
+                    id="songTitle">
+                    RUNFORCE Music
                 </div>
 
-                <div class="song-subtitle" id="songSubtitle">
-                    Loading playlist...
+                <div
+                    class="song-subtitle"
+                    id="songSubtitle">
+                    Running Motivation
                 </div>
 
-                <div class="player-status" id="playerStatus">
+                <div
+                    class="player-status"
+                    id="playerStatus">
                     ● Ready
                 </div>
 
@@ -849,7 +1050,9 @@
 
         <div class="progress-area">
 
-            <div class="progress" id="progressBar">
+            <div
+                class="progress"
+                id="progressBar">
 
                 <div
                     class="progress-fill"
@@ -857,6 +1060,7 @@
                 </div>
 
             </div>
+
 
             <div class="time-row">
 
@@ -882,12 +1086,14 @@
                 ⏮
             </button>
 
+
             <button
                 class="control"
                 onclick="restartSong()"
                 title="Restart">
                 ↺
             </button>
+
 
             <button
                 class="control play"
@@ -897,12 +1103,14 @@
                 ▶
             </button>
 
+
             <button
                 class="control"
                 onclick="nextSong()"
                 title="Next">
                 ⏭
             </button>
+
 
             <div class="volume-area">
 
@@ -913,26 +1121,14 @@
                     type="range"
                     min="0"
                     max="100"
-                    value="80"
-                    oninput="changeVolume(this.value)">
+                    value="70"
+                    onchange="changeVolume(this.value)">
 
             </div>
 
         </div>
 
     </div>
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        © 2026 <span>RunForce</span> |
-        Running Motivation Music
-        <br>
-        Created by <strong>Hitesh Kumar</strong> ❤️
-
-    </footer>
 
 
     <!-- YOUTUBE API -->
@@ -944,13 +1140,7 @@
 
         /*
         =====================================================
-        RUNFORCE PLAYLIST
-        =====================================================
-
-        यहाँ सिर्फ PLAYLIST ID है।
-
-        हर song का अलग link डालने की जरूरत नहीं।
-
+        RUNFORCE MUSIC PLAYER
         =====================================================
         */
 
@@ -965,51 +1155,56 @@
 
         /*
         =====================================================
-        YOUTUBE PLAYER
+        YOUTUBE API READY
         =====================================================
         */
 
         function onYouTubeIframeAPIReady() {
 
-            player = new YT.Player(
-                "youtube-player",
-                {
+            player =
+                new YT.Player(
+                    "youtube-player",
+                    {
 
-                    width: "1",
-                    height: "1",
+                        height: "1",
+                        width: "1",
 
-                    playerVars: {
+                        playerVars: {
 
-                        autoplay: 0,
+                            listType: "playlist",
 
-                        controls: 0,
+                            list: PLAYLIST_ID,
 
-                        rel: 0,
+                            autoplay: 0,
 
-                        playsinline: 1,
+                            controls: 0,
 
-                        listType: "playlist",
+                            playsinline: 1,
 
-                        list: PLAYLIST_ID,
+                            rel: 0,
 
-                        origin: window.location.origin
+                            modestbranding: 1,
 
-                    },
+                            origin:
+                                window.location.origin
 
-                    events: {
+                        },
 
-                        onReady: onPlayerReady,
+                        events: {
 
-                        onStateChange:
-                            onPlayerStateChange,
+                            onReady:
+                                onPlayerReady,
 
-                        onError:
-                            onPlayerError
+                            onStateChange:
+                                onPlayerStateChange,
+
+                            onError:
+                                onPlayerError
+
+                        }
 
                     }
-
-                }
-            );
+                );
 
         }
 
@@ -1022,13 +1217,107 @@
 
         function onPlayerReady() {
 
-            player.setVolume(80);
+            player.setVolume(70);
 
-            updateSongInfo();
 
-            document.getElementById(
-                "playerStatus"
-            ).textContent = "● Ready";
+            /*
+            RANDOM SONG
+            */
+
+            setTimeout(
+                function() {
+
+                    try {
+
+                        const playlist =
+                            player.getPlaylist();
+
+
+                        if (
+                            playlist &&
+                            playlist.length > 0
+                        ) {
+
+                            /*
+                            Get previous song
+                            */
+
+                            let lastIndex =
+                                Number(
+                                    localStorage.getItem(
+                                        "runforceLastSongIndex"
+                                    )
+                                );
+
+
+                            let randomIndex =
+                                Math.floor(
+                                    Math.random() *
+                                    playlist.length
+                                );
+
+
+                            /*
+                            Don't select
+                            same song twice
+                            */
+
+                            if (
+                                playlist.length > 1 &&
+                                randomIndex === lastIndex
+                            ) {
+
+                                randomIndex =
+                                    (
+                                        randomIndex + 1
+                                    ) %
+                                    playlist.length;
+
+                            }
+
+
+                            localStorage.setItem(
+                                "runforceLastSongIndex",
+                                randomIndex
+                            );
+
+
+                            /*
+                            Load selected song
+                            without autoplay
+                            */
+
+                            const videoId =
+                                playlist[
+                                    randomIndex
+                                ];
+
+
+                            player.cueVideoById(
+                                videoId
+                            );
+
+
+                            setTimeout(
+                                updateSongInfo,
+                                800
+                            );
+
+                        }
+
+                    }
+                    catch (error) {
+
+                        console.log(
+                            "Random song selection loading..."
+                        );
+
+                    }
+
+                },
+                1200
+            );
+
 
             startProgress();
 
@@ -1045,16 +1334,21 @@
 
             if (!player) return;
 
+
             const state =
                 player.getPlayerState();
 
+
             if (
-                state === YT.PlayerState.PLAYING
+                state ===
+                YT.PlayerState.PLAYING
             ) {
 
                 player.pauseVideo();
 
-            } else {
+            }
+
+            else {
 
                 player.playVideo();
 
@@ -1087,7 +1381,8 @@
                 YT.PlayerState.PLAYING
             ) {
 
-                playButton.textContent = "❚❚";
+                playButton.textContent =
+                    "❚❚";
 
                 status.textContent =
                     "● Playing";
@@ -1102,7 +1397,8 @@
                 YT.PlayerState.PAUSED
             ) {
 
-                playButton.textContent = "▶";
+                playButton.textContent =
+                    "▶";
 
                 status.textContent =
                     "● Paused";
@@ -1115,7 +1411,8 @@
                 YT.PlayerState.ENDED
             ) {
 
-                playButton.textContent = "▶";
+                playButton.textContent =
+                    "▶";
 
                 status.textContent =
                     "● Song finished";
@@ -1232,11 +1529,12 @@
                     document.getElementById(
                         "songSubtitle"
                     ).textContent =
-                        "RunForce • YouTube Playlist";
+                        "RUNFORCE • YouTube Playlist";
 
                 }
 
-            } catch (error) {
+            }
+            catch (error) {
 
                 console.log(
                     "Song information loading..."
@@ -1296,8 +1594,10 @@
 
 
                 const percentage =
-                    (current / duration) *
-                    100;
+                    (
+                        current /
+                        duration
+                    ) * 100;
 
 
                 document.getElementById(
@@ -1317,7 +1617,8 @@
                 ).textContent =
                     formatTime(duration);
 
-            } catch (error) {
+            }
+            catch (error) {
 
                 // Player अभी ready नहीं है
 
@@ -1328,31 +1629,38 @@
 
         /*
         =====================================================
-        CLICK PROGRESS BAR
+        PROGRESS BAR CLICK
         =====================================================
         */
 
         document
-            .getElementById("progressBar")
+            .getElementById(
+                "progressBar"
+            )
             .addEventListener(
                 "click",
                 function(event) {
 
                     if (!player) return;
 
+
                     const rect =
                         this.getBoundingClientRect();
+
 
                     const clickPosition =
                         event.clientX -
                         rect.left;
 
+
                     const percentage =
                         clickPosition /
                         rect.width;
 
+
                     const duration =
                         player.getDuration();
+
 
                     player.seekTo(
                         duration *
@@ -1381,23 +1689,30 @@
 
             }
 
+
             seconds =
                 Math.floor(seconds);
+
 
             const minutes =
                 Math.floor(
                     seconds / 60
                 );
 
+
             const remaining =
                 seconds % 60;
+
 
             return (
                 minutes +
                 ":" +
                 String(
                     remaining
-                ).padStart(2, "0")
+                ).padStart(
+                    2,
+                    "0"
+                )
             );
 
         }
@@ -1441,7 +1756,7 @@
             ) {
 
                 status.textContent =
-                    "● Website को localhost से खोलें";
+                    "● YouTube ने इस website को block किया";
 
             }
 
@@ -1465,6 +1780,7 @@
 
             const section =
                 document.getElementById(id);
+
 
             if (section) {
 
@@ -1500,6 +1816,7 @@
                 document.body.style.color =
                     "#111";
 
+
                 document.querySelector(
                     ".background"
                 ).style.filter =
@@ -1515,6 +1832,7 @@
                 document.body.style.color =
                     "white";
 
+
                 document.querySelector(
                     ".background"
                 ).style.filter =
@@ -1527,7 +1845,7 @@
 
         /*
         =====================================================
-        FILE:// WARNING
+        FILE PROTOCOL WARNING
         =====================================================
         */
 
@@ -1539,10 +1857,17 @@
             setTimeout(
                 function() {
 
-                    document.getElementById(
-                        "playerStatus"
-                    ).textContent =
-                        "● localhost से website खोलें";
+                    const status =
+                        document.getElementById(
+                            "playerStatus"
+                        );
+
+                    if (status) {
+
+                        status.textContent =
+                            "● GitHub Pages पर खोलें";
+
+                    }
 
                 },
                 1000
